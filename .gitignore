@@ -1,0 +1,9 @@
+.DS_Store
+
+# デザイン検討用に作った他案。手元には残すが追跡はしない。
+design-*.html
+compare.html
+
+# 作業用。公開する必要がないので追跡しない。
+requirement.md
+.claude/

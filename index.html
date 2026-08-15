@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>alphajinsei</title>
+<meta name="description" content="作ったものと、考えていることの置き場。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230f1115'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%236ea8fe' text-anchor='middle'>α</text></svg>">
+<style>
+  /* =========================================================
+     配色：ダークを主役にする。
+     アクセントは青一色に絞り、見出し番号とリンクにだけ使う。
+     色を足したくなったら、まずここを増やさずに済まないか考える。
+     ========================================================= */
+  :root {
+    --bg:          #0f1115;
+    --group-bg:    #171a21;
+    --group-edge:  #232833;
+    --text:        #e6e8ec;
+    --text-sub:    #a8aebb;
+    --text-dim:    #7b8394;
+    --text-faint:  #5a6273;
+    --rule:        #232833;
+    --accent:      #6ea8fe;
+    --accent-dim:  #3d5a8a;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* ライト環境でも破綻しないよう、明るい版も定義しておく */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg:         #f7f8fa;
+      --group-bg:   #ffffff;
+      --group-edge: #dfe3ea;
+      --text:       #10131a;
+      --text-sub:   #414957;
+      --text-dim:   #656e7e;
+      --text-faint: #8a92a1;
+      --rule:       #e4e8ee;
+      --accent:     #1f5fd0;
+      --accent-dim: #93b4e8;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+                 "Noto Sans JP", "Yu Gothic UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.7;
+  }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 6rem 1.5rem 4rem; }
+
+  /* ---------- 導入 ---------- */
+  .intro { margin-bottom: 5.5rem; }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    margin: 0 0 .4rem;
+  }
+  /* 名前の下に短いアクセント線を引く。ここが唯一の「主張」 */
+  h1::after {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    background: var(--accent);
+    margin-top: .9rem;
+  }
+
+  .lead {
+    font-size: .95rem;
+    color: var(--text-sub);
+    margin: 1.5rem 0 1rem;
+  }
+
+  .sub {
+    font-size: .875rem;
+    line-height: 2;
+    color: var(--text-dim);
+    margin: 0;
+    max-width: 56ch;
+  }
+
+  /* ---------- グループ ---------- */
+  .group {
+    background: var(--group-bg);
+    border: 1px solid var(--group-edge);
+    border-radius: 10px;
+    padding: 2rem 2rem 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .group-head {
+    margin-bottom: 1.5rem;
+  }
+
+  /* 通し番号。等幅＋アクセント色で、見出しの前に小さく置く */
+  .group-num {
+    display: block;
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .18em;
+    color: var(--accent);
+    margin-bottom: .55rem;
+  }
+
+  .group h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .group-note {
+    font-size: .825rem;
+    color: var(--text-dim);
+    margin: .7rem 0 0;
+    line-height: 1.85;
+    max-width: 54ch;
+  }
+
+  /* ---------- 作品 ---------- */
+  .product {
+    padding: 1.35rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .product-head {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: .75rem;
+  }
+
+  .product h3 { font-size: 1.05rem; font-weight: 600; margin: 0; }
+
+  .product h3 a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-dim);
+    padding-bottom: 1px;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .product h3 a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .product h3 > span { color: var(--text-dim); }
+
+  .status {
+    font-size: .68rem;
+    font-family: var(--mono);
+    letter-spacing: .04em;
+    padding: .15rem .5rem;
+    border: 1px solid var(--group-edge);
+    border-radius: 3px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .year {
+    font-family: var(--mono);
+    font-size: .75rem;
+    color: var(--text-faint);
+    margin-left: auto;
+  }
+
+  .note {
+    margin: .6rem 0 0;
+    font-size: .9rem;
+    line-height: 1.85;
+    color: var(--text-sub);
+    max-width: 58ch;
+  }
+
+  .meta {
+    display: flex; align-items: center; flex-wrap: wrap; gap: .5rem;
+    margin-top: .8rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: .68rem;
+    color: var(--text-faint);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: .1rem .45rem;
+  }
+
+  .repo {
+    font-size: .75rem;
+    color: var(--text-faint);
+    text-decoration: none;
+    margin-left: auto;
+    border-bottom: 1px solid transparent;
+  }
+  .repo:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
+
+  /* ---------- ほかの場所 ---------- */
+  .elsewhere { margin-top: 4.5rem; }
+
+  .elsewhere h2 {
+    font-family: var(--mono);
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    color: var(--text-dim);
+    margin: 0 0 .25rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid var(--group-edge);
+    text-transform: uppercase;
+  }
+
+  .links { list-style: none; padding: 0; margin: 0; }
+
+  .links li {
+    display: flex; align-items: baseline; gap: .9rem;
+    padding: .85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .links a {
+    font-size: .9rem; color: var(--text); text-decoration: none;
+    border-bottom: 1px solid var(--accent-dim); padding-bottom: 1px;
+  }
+  .links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .links span { font-size: .75rem; color: var(--text-faint); }
+
+  footer {
+    margin-top: 6rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: .72rem; color: var(--text-faint); margin: 0; letter-spacing: .08em;
+  }
+
+  @media (max-width: 640px) {
+    main       { padding: 3.5rem 1.25rem 3rem; }
+    .intro     { margin-bottom: 3.5rem; }
+    .group     { padding: 1.6rem 1.25rem .75rem; margin-bottom: 2rem; }
+    .group h2  { font-size: 1.15rem; }
+    .elsewhere { margin-top: 3.5rem; }
+    .year, .repo { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header class="intro">
+    <h1>alphajinsei</h1>
+    <p class="lead">作ったものと、考えていることの置き場です。</p>
+    <p class="sub">
+      物理を専攻して、いまは証券系システムの基盤を触っています。
+      AIは独学で、強化学習を一から手で書くあたりを行き来しています。
+      関心はだいたい「AIと人間が写し鏡になっている構造」に集まっていて、
+      作ったものもそのあたりに散らばっています。
+    </p>
+  </header>
+
+  <section class="group">
+    <div class="group-head">
+      <span class="group-num">01</span>
+      <h2>AIと考えるということ</h2>
+      <p class="group-note">
+        AIと人間は写し鏡だと思っている。片方の発見が、もう片方の再発見になる。
+      </p>
+    </div>
+
+    <article class="product">
+      <div class="product-head">
+        <h3><a href="https://dia-logos.alphajinsei.com">dia-logos</a></h3>
+        <span class="year">2026</span>
+      </div>
+      <p class="note">
+        Claudeとの対話から選び取った思考の軌跡を残すブログ。知識がAIに集約された世界で
+        希少なのは、巨大な知の集合から何を選び取ったかのほうだと思っている。
+      </p>
+      <div class="meta">
+        <span class="tag">Astro</span>
+        <span class="tag">Cloudflare Pages</span>
+        <a class="repo" href="https://github.com/alphajinsei/dia-logos">ソース →</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <span class="group-num">02</span>
+      <h2>暮らしを計算する</h2>
+      <p class="group-note">
+        身の回りの選択を、感覚ではなくデータで決められるところまで持っていく。
+      </p>
+    </div>
+
+    <article class="product">
+      <div class="product-head">
+        <h3><a href="https://hoikuen.alphajinsei.com">保育園比較</a></h3>
+        <span class="status">限定公開</span>
+        <span class="year">2026</span>
+      </div>
+      <p class="note">
+        三鷹市の保育園を地図上に並べて比較する。子どもが産まれて、感覚で決めるには
+        重すぎる選択だと気づいたので作った。
+      </p>
+      <div class="meta">
+        <span class="tag">Leaflet</span>
+        <a class="repo" href="https://github.com/alphajinsei/nursery_comparison">ソース →</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="elsewhere">
+    <h2>Elsewhere</h2>
+    <ul class="links">
+      <li><a href="https://github.com/alphajinsei">GitHub</a><span>コード</span></li>
+      <li><a href="https://qiita.com/alphajinsei">Qiita</a><span>技術記事</span></li>
+      <li><a href="https://zenn.dev/alphajinsei">Zenn</a><span>実験的な記事</span></li>
+      <li><a href="https://alphajinsei.hatenablog.com/">はてなブログ</a><span>雑記</span></li>
+    </ul>
+  </section>
+
+  <footer><p>alphajinsei</p></footer>
+
+</main>
+</body>
+</html>
