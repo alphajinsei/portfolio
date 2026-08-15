@@ -65,6 +65,5 @@ DNS は Cloudflare で管理している。仕組みの詳細は
 
 ## 今後
 
-- [ ] osakana-simulator を公開してリンクする（静的3ファイルなので Pages にそのまま置ける）
 - [ ] RL（Connect Four）— Flask + PyTorch なので OCI Always Free に立てる想定
 - [ ] 保育園・API を叩くものの認証（限定公開の実装）
