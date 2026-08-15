@@ -55,7 +55,10 @@ Cloudflare Pages + GitHub 連携。
 |---|---|
 | ビルドコマンド | （なし） |
 | 出力ディレクトリ | `/`（リポジトリ直下） |
-| 独自ドメイン | `alphajinsei.com`（apex） |
+| 独自ドメイン | https://alphajinsei.com （apex） |
+| Pages の既定URL | `portfolio-4zi.pages.dev` |
+
+main に push すると自動でデプロイされる。
 
 DNS は Cloudflare で管理している。仕組みの詳細は
 [hoikuen/DNS_Management_Guide.md](../hoikuen/DNS_Management_Guide.md) に書いてある。
