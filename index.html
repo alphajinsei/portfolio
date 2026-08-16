@@ -342,6 +342,36 @@
     </article>
   </section>
 
+  <section class="group">
+    <div class="group-head">
+      <span class="group-num">04</span>
+      <h2>試行錯誤から学ぶということ</h2>
+      <p class="group-note">
+        正解を教えずに、勝ち負けだけを返す。それでも強くなっていく過程を手で書いて確かめる。
+      </p>
+    </div>
+
+    <article class="product">
+      <div class="product-head">
+        <h3><a href="https://connect-three.alphajinsei.com">Connect 3 で強化学習</a></h3>
+        <span class="year">2026</span>
+      </div>
+      <p class="note">
+        5×5盤の3目並べを、DQNをゼロから書いて学習させた。ブラウザ上で対戦できる。
+        学習済みモデルをONNXに変換してあり、推論はサーバーではなく手元のブラウザで動く。
+        「vs ルールベース100%」が実は11局面の暗記でしかなかった、と後から気づいたのが
+        いちばんの収穫だった。
+      </p>
+      <div class="meta">
+        <span class="tag">PyTorch</span>
+        <span class="tag">DQN</span>
+        <span class="tag">ONNX Runtime Web</span>
+        <span class="tag">Cloudflare Pages</span>
+        <a class="repo" href="https://github.com/alphajinsei/connect_four">ソース →</a>
+      </div>
+    </article>
+  </section>
+
   <section class="elsewhere">
     <h2>Elsewhere</h2>
     <ul class="links">

@@ -68,5 +68,6 @@ DNS は Cloudflare で管理している。仕組みの詳細は
 
 ## 今後
 
-- [ ] RL（Connect Four）— Flask + PyTorch なので OCI Always Free に立てる想定
+- [x] RL（Connect 3）— ONNX 化してブラウザ内推論にしたので Cloudflare Pages で公開できた
+- [ ] RL（Connect Four）— DQN では届かなかったので AlphaZero 版の完成待ち
 - [ ] 保育園・API を叩くものの認証（限定公開の実装）
