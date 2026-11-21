@@ -71,4 +71,5 @@ DNS は Cloudflare で管理している。仕組みの詳細は
 - [x] RL（Connect 3）— ONNX 化してブラウザ内推論にしたので Cloudflare Pages で公開できた
 - [ ] RL（Connect Four）— DQN では届かなかったので AlphaZero 版の完成待ち
 - [x] todo — 方式②（Workers + D1）で公開。書き込みだけ Access で守る
+- [x] CRC相談役アプリ（satsuki）— 紹介ページ（作り方の記録）を GitHub Pages で公開。アプリ本体はサーバー側で API キーを使うので公開していない
 - [ ] 保育園・API を叩くものの認証（限定公開の実装）
